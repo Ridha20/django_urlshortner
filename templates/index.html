@@ -1,0 +1,89 @@
+<head>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <style>
+        *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  line-height: 1.5;
+  color: #111;
+}
+
+main {
+  text-align: center;
+  width: 1000px;
+  border: 2.5px solid #000000;
+  border-radius: 2.5px;
+  background-color: black;
+}
+
+h1 {
+  padding: 1rem;
+  color: white;
+}
+
+input {
+  color:rgb(0, 0, 0);
+  border: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+}
+section {
+  min-height: 100px;
+  text-align: center;
+  background-color: white;
+}
+</style>
+
+</head>
+<main>
+  <h1>URL Shortener</h1>
+  <form id="post-form">
+    {% csrf_token %}
+  <input type="text" name="link" id="link" placeholder="Enter URL here">
+  <div class="buttons">
+    <button type="submit" id="shorten">Shorten</button>
+  </div>
+  </form>
+ 
+  <section id="section"> <h2></h2></section>
+  
+</main>
+  <script type="text/javascript">
+    $(document).on('submit','#post-form', function(e){
+    e.preventDefault();
+    $.ajax({
+      type:'POST',
+      url:'/create' ,
+      data:{
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        'link' : $('#link').val()
+        },
+      success:function(data){
+        $('h2').html("localhost:8000/"+data)
+      } 
+
+  });
+});
+
+</script> 
