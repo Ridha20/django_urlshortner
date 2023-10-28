@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'Urlshortner.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "railway",
+        "USER": "postgres",
+        "PASSWORD": "*Ce6agCeFGGEeFa-f*3Ba1dBCDG4f44c",
+        "HOST": "monorail.proxy.rlwy.net",
+        "PORT": "35463",
     }
+
 }
 
 
